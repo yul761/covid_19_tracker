@@ -115,9 +115,6 @@ export default class Country extends Component {
   };
 
   generateChart = () => {
-    // var ctx = document
-    //   .getElementsByClassName("country__chart--line")[0]
-    //   .getContext("2d");
     if (this.state.history !== null) {
       var labels = [];
       var total_cases = [];
@@ -229,122 +226,6 @@ export default class Country extends Component {
         ]
       };
       chartData = data;
-      //   var chart = new Chart(ctx, {
-      //     type: "line",
-      //     data: {
-      //       labels: labels,
-      //       datasets: [
-      //         {
-      //           label: "Total Cases",
-      //           fill: true,
-      //           //   backgroundColor: this.color.red.fill,
-      //           pointBackgroundColor: this.color.red.line,
-      //           borderColor: this.color.red.line,
-      //           pointHighlightStroke: this.color.red.line,
-      //           borderCapStyle: "butt",
-      //           pointRadius: 1,
-      //           pointHoverRadius: 1,
-      //           data: total_cases
-      //         },
-      //         {
-      //           label: "New Cases",
-      //           fill: true,
-      //           //   backgroundColor: this.color.blue.fill,
-      //           pointBackgroundColor: this.color.blue.line,
-      //           borderColor: this.color.blue.line,
-      //           pointHighlightStroke: this.color.blue.line,
-      //           borderCapStyle: "butt",
-      //           pointRadius: 1,
-      //           pointHoverRadius: 1,
-      //           data: new_cases
-      //         },
-      //         {
-      //           label: "Active Cases",
-      //           fill: true,
-      //           //   backgroundColor: this.color.green.fill,
-      //           pointBackgroundColor: this.color.green.line,
-      //           borderColor: this.color.green.line,
-      //           pointHighlightStroke: this.color.green.line,
-      //           borderCapStyle: "butt",
-      //           pointRadius: 1,
-      //           pointHoverRadius: 1,
-      //           data: active_cases
-      //         },
-      //         {
-      //           label: "Total Deaths",
-      //           fill: true,
-      //           //   backgroundColor: this.color.yellow.fill,
-      //           pointBackgroundColor: this.color.yellow.line,
-      //           borderColor: this.color.yellow.line,
-      //           pointHighlightStroke: this.color.yellow.line,
-      //           borderCapStyle: "butt",
-      //           pointRadius: 1,
-      //           pointHoverRadius: 1,
-      //           data: total_deaths
-      //         },
-      //         {
-      //           label: "New Deaths",
-      //           fill: true,
-      //           //   backgroundColor: this.color.purple.fill,
-      //           pointBackgroundColor: this.color.purple.line,
-      //           borderColor: this.color.purple.line,
-      //           pointHighlightStroke: this.color.purple.line,
-      //           borderCapStyle: "butt",
-      //           pointRadius: 1,
-      //           pointHoverRadius: 1,
-      //           data: new_deaths
-      //         },
-      //         {
-      //           label: "Total Recovered",
-      //           fill: true,
-      //           //   backgroundColor: this.color.black.fill,
-      //           pointBackgroundColor: this.color.black.line,
-      //           borderColor: this.color.black.line,
-      //           pointHighlightStroke: this.color.black.line,
-      //           borderCapStyle: "butt",
-      //           pointRadius: 1,
-      //           pointHoverRadius: 1,
-      //           data: total_recovered
-      //         },
-      //         {
-      //           label: "Serious Critical",
-      //           fill: true,
-      //           //   backgroundColor: this.color.pink.fill,
-      //           pointBackgroundColor: this.color.pink.line,
-      //           borderColor: this.color.pink.line,
-      //           pointHighlightStroke: this.color.pink.line,
-      //           borderCapStyle: "butt",
-      //           pointRadius: 1,
-      //           pointHoverRadius: 1,
-      //           data: serious_critical
-      //         }
-      //       ]
-      //     },
-
-      //     options: {
-      //       scales: {
-      //         xAxes: [{ ticks: { maxTicksLimit: 8 } }],
-      //         yAxes: [
-      //           {
-      //             ticks: {
-      //               beginAtZero: true
-      //             }
-      //           }
-      //         ]
-      //       },
-      //       animation: {
-      //         duration: 750
-      //       },
-      //       pan: {
-      //         enabled: true,
-      //         mode: "xy"
-      //       },
-      //       zoom: {
-      //         enabled: true,
-      //         mode: "xy" // or 'x' for "drag" version
-      //       }
-      //     }
-      //   });
     }
   };
 
