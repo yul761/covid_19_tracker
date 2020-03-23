@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Bellota&display=swap");
+@import "./partials/breakpoint";
+@import "./partials/worldStats";
+@import "./partials/header";
+@import "./partials/country";

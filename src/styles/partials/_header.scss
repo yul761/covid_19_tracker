@@ -1,0 +1,33 @@
+.header {
+  width: 100vw;
+  height: 8vh;
+
+  &__tabs {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    font-family: "Bellota";
+    font-size: 2.5rem;
+    color: white;
+    height: 100%;
+    width: 98%;
+    margin: 1%;
+    background-color: rgb(53, 48, 48);
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px black;
+
+    &--worldStats {
+      width: 50%;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+    }
+
+    &--country {
+      width: 50%;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+    }
+  }
+}

@@ -1,0 +1,58 @@
+.stats {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 80vh;
+
+  &__worldStatsTimeline {
+    background-color: #a19ea1;
+    text-align: center;
+    justify-content: center;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px black;
+
+    width: 98%;
+    margin: 1% 1%;
+    margin-bottom: 0;
+    height: 15vh;
+    font-family: "Bellota";
+    font-size: 2rem;
+  }
+
+  &__worldStats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    width: 100%;
+    height: 70vh;
+
+    &__data {
+      width: 100%;
+      height: 20%;
+      margin: 1%;
+      background-color: #a19ea1;
+      border-radius: 4px;
+      text-align: center;
+      box-shadow: 2px 2px 4px black;
+      font-family: "Bellota";
+      font-size: 2rem;
+    }
+  }
+}
+
+@include tablet {
+  .stats {
+    &__worldStatsTimeline {
+      height: 10vh;
+    }
+    &__worldStats {
+      &__data {
+        width: 48%;
+        height: 30%;
+        font-size: 2rem;
+      }
+    }
+  }
+}

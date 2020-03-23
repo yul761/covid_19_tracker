@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css?family=Bellota&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/* media query for mobile */
+/* media query for tablet */
+/* media query for desktop */
+.stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100vw;
+  height: 80vh;
+}
+
+.stats__worldStatsTimeline {
+  background-color: #a19ea1;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 4px;
+  -webkit-box-shadow: 2px 2px 4px black;
+          box-shadow: 2px 2px 4px black;
+  width: 98%;
+  margin: 1% 1%;
+  margin-bottom: 0;
+  height: 15vh;
+  font-family: "Bellota";
+  font-size: 2rem;
+}
+
+.stats__worldStats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+  height: 70vh;
+}
+
+.stats__worldStats__data {
+  width: 100%;
+  height: 20%;
+  margin: 1%;
+  background-color: #a19ea1;
+  border-radius: 4px;
+  text-align: center;
+  -webkit-box-shadow: 2px 2px 4px black;
+          box-shadow: 2px 2px 4px black;
+  font-family: "Bellota";
+  font-size: 2rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .stats__worldStatsTimeline {
+    height: 10vh;
+  }
+  .stats__worldStats__data {
+    width: 48%;
+    height: 30%;
+    font-size: 2rem;
+  }
+}
+
+.header {
+  width: 100vw;
+  height: 8vh;
+}
+
+.header__tabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  list-style: none;
+  font-family: "Bellota";
+  font-size: 2.5rem;
+  color: white;
+  height: 100%;
+  width: 98%;
+  margin: 1%;
+  background-color: #353030;
+  border-radius: 4px;
+  -webkit-box-shadow: 2px 2px 4px black;
+          box-shadow: 2px 2px 4px black;
+}
+
+.header__tabs--worldStats {
+  width: 50%;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
+
+.header__tabs--country {
+  width: 50%;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
+
+.country {
+  width: 98%;
+  margin: 1%;
+}
+/*# sourceMappingURL=main.css.map */
