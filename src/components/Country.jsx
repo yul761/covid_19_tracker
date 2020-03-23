@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Select from "react-select";
-import Chart from "chart.js";
-import Hammer from "hammerjs";
 import { Line } from "react-chartjs-2";
 
 var chartData = {};
