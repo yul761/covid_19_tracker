@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Select from "react-select";
-import { Line } from "react-chartjs-2";
+import { Chart, Line } from "react-chartjs-2";
+import "hammerjs";
+import * as zoom from "chartjs-plugin-zoom";
 
 var chartData = {};
+var chartOptions = {};
+var labels = [];
+var selectedFlag = false;
 export default class Country extends Component {
   constructor() {
     super();
@@ -12,7 +17,9 @@ export default class Country extends Component {
       affected: false,
       selectedCountry: undefined,
       prevSelectedCountry: undefined,
-      history: []
+      history: [],
+      casesbyCountry: [],
+      selectedCurCases: {}
     };
   }
 
@@ -59,7 +66,6 @@ export default class Country extends Component {
       }
     })
       .then(response => {
-        console.log(response.data.affected_countries);
         this.setState({ affectedCountries: response.data.affected_countries });
         this.setState({ affected: true });
       })
@@ -84,6 +90,7 @@ export default class Country extends Component {
     })
       .then(response => {
         console.log(response);
+        selectedFlag = true;
         this.formatHistory(response.data.stat_by_country);
         this.setState({ prevSelectedCountry: this.state.selectedCountry });
       })
@@ -113,8 +120,9 @@ export default class Country extends Component {
   };
 
   generateChart = () => {
+    chartData = {};
     if (this.state.history !== null) {
-      var labels = [];
+      labels = [];
       var total_cases = [];
       var new_cases = [];
       var active_cases = [];
@@ -132,8 +140,6 @@ export default class Country extends Component {
         total_recovered.push(this.stringToNumber(element.total_recovered));
         serious_critical.push(this.stringToNumber(element.serious_critical));
       });
-
-      console.log(total_cases);
       var data = {
         labels: labels,
         datasets: [
@@ -244,7 +250,22 @@ export default class Country extends Component {
       }
     })
       .then(response => {
-        console.log(response);
+        console.log(response.data);
+        var tempcases = [];
+        response.data.countries_stat.map(element => {
+          let data = {
+            country: element.country_name,
+            total_cases: element.cases,
+            total_deaths: element.deaths,
+            total_recovered: element.total_recovered,
+            new_deaths: element.new_deaths,
+            new_cases: element.new_cases,
+            serious_critical: element.serious_critical,
+            active_cases: element.active_cases
+          };
+          tempcases.push(data);
+        });
+        this.setState({ casesbyCountry: tempcases });
       })
       .catch(error => {
         console.log(error);
@@ -287,16 +308,55 @@ export default class Country extends Component {
   };
 
   componentDidMount() {
+    chartData = {};
     this.affectedCountries();
+    this.casesByCountry();
+    this.LatestDataByCountry("USA");
+    chartOptions = {
+      responsive: true,
+      scales: {
+        // xAxes: [{ ticks: { maxTicksLimit: 10 } }],
+        yAxes: [{ ticks: { beginAtZero: true } }]
+      },
+      pan: {
+        enabled: true,
+        mode: "xy"
+      },
+      zoom: {
+        enabled: true,
+        mode: "xy"
+      }
+    };
   }
+  //   componentWillMount() {
+  //     Chart.plugins.register(zoom);
+  //   }
+
+  curCasesByCountry = country => {
+    console.log(this.state.casesbyCountry);
+    var selected = this.state.casesbyCountry.filter(
+      el => el.country === country
+    );
+
+    this.setState({ selectedCurCases: selected[0] });
+    selectedFlag = false;
+  };
 
   componentDidUpdate(prevProps, prevState) {
     console.log("the selected country is : " + this.state.selectedCountry);
+
     if (this.state.prevSelectedCountry !== this.state.selectedCountry) {
+      chartData = {};
       this.HistoryCaseByCountry(this.state.selectedCountry);
+      console.log(selectedFlag);
+      if (selectedFlag) {
+        this.curCasesByCountry(this.state.selectedCountry);
+      }
       this.generateChart();
-      console.log(this.state.history);
     }
+
+    console.log(this.state.selectedCurCases);
+    console.log(this.state.selectedCurCases.total_cases);
   }
   render() {
     return (
@@ -314,8 +374,71 @@ export default class Country extends Component {
           />
         </div>
 
+        <div className="country__curCases">
+          <div className="country__curCases--totalCases country__curCases--block">
+            <div className="country__curCases--totalCases-label country__curCases--block-label">
+              Total Cases :
+            </div>
+            <div className="country__curCases--totalCases-data country__curCases--block-data">
+              {this.state.selectedCurCases.total_cases}
+            </div>
+          </div>
+          <div className="country__curCases--totalDeaths country__curCases--block">
+            <div className="country__curCases--totalDeaths-label country__curCases--block-label">
+              Total Deaths :
+            </div>
+            <div className="country__curCases--totalDeaths-data country__curCases--block-data">
+              {this.state.selectedCurCases.total_deaths}
+            </div>
+          </div>
+          <div className="country__curCases--totalRecovered country__curCases--block">
+            <div className="country__curCases--totalRecovered-label country__curCases--block-label">
+              Total Recovered :
+            </div>
+            <div className="country__curCases--totalRecovered-data country__curCases--block-data">
+              {this.state.selectedCurCases.total_recovered}
+            </div>
+          </div>
+          <div className="country__curCases--newDeaths country__curCases--block">
+            <div className="country__curCases--newDeaths-label country__curCases--block-label">
+              New Deaths :
+            </div>
+            <div className="country__curCases--newDeaths-data country__curCases--block-data">
+              {this.state.selectedCurCases.new_deaths}
+            </div>
+          </div>
+          <div className="country__curCases--newCases country__curCases--block">
+            <div className="country__curCases--newCases-label country__curCases--block-label">
+              New Cases :
+            </div>
+            <div className="country__curCases--newCases-data country__curCases--block-data">
+              {this.state.selectedCurCases.new_cases}
+            </div>
+          </div>
+          <div className="country__curCases--seriousCritical country__curCases--block">
+            <div className="country__curCases--seriousCritical-label country__curCases--block-label">
+              Serious Critical :
+            </div>
+            <div className="country__curCases--seriousCritical-data country__curCases--block-data">
+              {this.state.selectedCurCases.serious_critical}
+            </div>
+          </div>
+          <div className="country__curCases--activeCases country__curCases--block">
+            <div className="country__curCases--activeCases-label country__curCases--block-label">
+              Active Cases :
+            </div>
+            <div className="country__curCases--activeCases-data country__curCases--block-data">
+              {this.state.selectedCurCases.active_cases}
+            </div>
+          </div>
+        </div>
+
         <div className="country__chart">
-          <Line className="country__chart--line" data={chartData} />
+          <Line
+            className="country__chart--line"
+            data={chartData}
+            options={chartOptions}
+          />
         </div>
       </div>
     );

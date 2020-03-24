@@ -121,5 +121,43 @@
 .country {
   width: 98%;
   margin: 1%;
+  height: 80vh;
+}
+
+.country__selectBar {
+  width: 100%;
+  height: 7%;
+}
+
+.country__curCases {
+  width: 100%;
+  height: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.country__curCases--block {
+  width: 35%;
+  height: 25%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  font-family: "Bellota";
+  font-size: 1.3rem;
+}
+
+.country__curCases--block-label {
+  margin-right: 2%;
 }
 /*# sourceMappingURL=main.css.map */

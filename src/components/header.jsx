@@ -7,10 +7,10 @@ export default class header extends Component {
       <div className="header">
         <ul className="header__tabs">
           <Link to="/world" className="header__tabs--worldStats">
-            <li className="header__tabs--worldStats--label">World</li>
+            <li className="header__tabs--worldStats--label">World Stats</li>
           </Link>
           <Link to="/country" className="header__tabs--country">
-            <li className="header__tabs--country--label">Country</li>
+            <li className="header__tabs--country--label">Country/Region</li>
           </Link>
         </ul>
       </div>
