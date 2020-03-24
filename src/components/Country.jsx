@@ -19,7 +19,15 @@ export default class Country extends Component {
       prevSelectedCountry: undefined,
       history: [],
       casesbyCountry: [],
-      selectedCurCases: {}
+      selectedCurCases: {},
+      // trigger to show different content on chart
+      showTotalCases: true,
+      showTotalDeaths: true,
+      showTotalRecovered: true,
+      showNewDeaths: true,
+      showNewCases: true,
+      showSeriousCritical: true,
+      showActiveCases: true
     };
   }
 
@@ -136,10 +144,100 @@ export default class Country extends Component {
         active_cases.push(this.stringToNumber(element.active_cases));
         total_deaths.push(this.stringToNumber(element.total_deaths));
         new_deaths.push(this.stringToNumber(element.new_deaths));
-        new_cases.push(this.stringToNumber(element.new_cases));
+        new_cases.push(
+          this.stringToNumber(
+            element.new_cases === "" ? "0" : element.new_cases
+          )
+        );
         total_recovered.push(this.stringToNumber(element.total_recovered));
         serious_critical.push(this.stringToNumber(element.serious_critical));
       });
+
+      // control which data should be shown on chart
+      var DataTotalCase = {
+        label: "Total Cases",
+        fill: true,
+        pointBackgroundColor: this.color.red.line,
+        borderColor: this.color.red.line,
+        pointHighlightStroke: this.color.red.line,
+        borderCapStyle: "butt",
+        pointRadius: 1,
+        pointHoverRadius: 1,
+        data: total_cases
+      };
+
+      var DataTotalDeaths = {
+        label: "Total Deaths",
+        fill: true,
+        pointBackgroundColor: this.color.yellow.line,
+        borderColor: this.color.yellow.line,
+        pointHighlightStroke: this.color.yellow.line,
+        borderCapStyle: "butt",
+        pointRadius: 1,
+        pointHoverRadius: 1,
+        data: total_deaths
+      };
+
+      var DataTotalRecovered = {
+        label: "Total Recovered",
+        fill: true,
+        pointBackgroundColor: this.color.black.line,
+        borderColor: this.color.black.line,
+        pointHighlightStroke: this.color.black.line,
+        borderCapStyle: "butt",
+        pointRadius: 1,
+        pointHoverRadius: 1,
+        data: total_recovered
+      };
+
+      var DataNewCases = {
+        label: "New Cases",
+        fill: true,
+        pointBackgroundColor: this.color.blue.line,
+        borderColor: this.color.blue.line,
+        pointHighlightStroke: this.color.blue.line,
+        borderCapStyle: "butt",
+        pointRadius: 1,
+        pointHoverRadius: 1,
+        data: new_cases
+      };
+
+      var DataNewDeaths = {
+        label: "New Deaths",
+        fill: true,
+        pointBackgroundColor: this.color.purple.line,
+        borderColor: this.color.purple.line,
+        pointHighlightStroke: this.color.purple.line,
+        borderCapStyle: "butt",
+        pointRadius: 1,
+        pointHoverRadius: 1,
+        data: new_deaths
+      };
+
+      var DataSeriousCritical = {
+        label: "Serious Critical",
+        fill: true,
+        pointBackgroundColor: this.color.pink.line,
+        borderColor: this.color.pink.line,
+        pointHighlightStroke: this.color.pink.line,
+        borderCapStyle: "butt",
+        pointRadius: 1,
+        pointHoverRadius: 1,
+        data: serious_critical
+      };
+
+      var DataActiveCases = {
+        label: "Active Cases",
+        fill: true,
+        pointBackgroundColor: this.color.green.line,
+        borderColor: this.color.green.line,
+        pointHighlightStroke: this.color.green.line,
+        borderCapStyle: "butt",
+        pointRadius: 1,
+        pointHoverRadius: 1,
+        data: active_cases
+      };
+
       var data = {
         labels: labels,
         datasets: [
@@ -344,6 +442,23 @@ export default class Country extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     console.log("the selected country is : " + this.state.selectedCountry);
+    console.log(
+      "The value of showTotalCases is : " + this.state.showTotalCases
+    );
+    console.log(
+      "The value of showTotalDeaths is : " + this.state.showTotalDeaths
+    );
+    console.log(
+      "The value of showTotalRecovered is : " + this.state.showTotalRecovered
+    );
+    console.log("The value of showNewCases is : " + this.state.showNewCases);
+    console.log("The value of showNewDeath is : " + this.state.showNewDeaths);
+    console.log(
+      "The value of showSeriousCritical is : " + this.state.showSeriousCritical
+    );
+    console.log(
+      "The value of showActiveCases is : " + this.state.showActiveCases
+    );
 
     if (this.state.prevSelectedCountry !== this.state.selectedCountry) {
       chartData = {};
@@ -375,60 +490,158 @@ export default class Country extends Component {
         </div>
 
         <div className="country__curCases">
+          {/**********************  total cases block *************************/}
           <div className="country__curCases--totalCases country__curCases--block">
-            <div className="country__curCases--totalCases-label country__curCases--block-label">
-              Total Cases :
+            <div className="country__curCases--totalCases--container country__curCases--block--container">
+              <div className="country__curCases--totalCases--container-label country__curCases--block--container-label">
+                Total Cases :
+              </div>
+              <div className="country__curCases--totalCases--container-data country__curCases--block--container-data">
+                {this.state.selectedCurCases.total_cases}
+              </div>
             </div>
-            <div className="country__curCases--totalCases-data country__curCases--block-data">
-              {this.state.selectedCurCases.total_cases}
+            <div className="country__curCases--block--icon">
+              <button
+                className="country__curCases--block--icon--button"
+                onClick={() => {
+                  console.log("Total Cases close button clicked");
+                  this.setState({ showTotalCases: false });
+                }}
+              >
+                &#10006;
+              </button>
             </div>
           </div>
+          {/**********************  total deaths block *************************/}
           <div className="country__curCases--totalDeaths country__curCases--block">
-            <div className="country__curCases--totalDeaths-label country__curCases--block-label">
-              Total Deaths :
+            <div className="country__curCases--totalDeaths--container country__curCases--block--container">
+              <div className="country__curCases--totalDeaths-label country__curCases--block--container-label">
+                Total Deaths :
+              </div>
+              <div className="country__curCases--totalDeaths-data country__curCases--block--container-data">
+                {this.state.selectedCurCases.total_deaths}
+              </div>
             </div>
-            <div className="country__curCases--totalDeaths-data country__curCases--block-data">
-              {this.state.selectedCurCases.total_deaths}
+            <div className="country__curCases--block--icon">
+              <button
+                className="country__curCases--block--icon--button"
+                onClick={() => {
+                  console.log("Total deaths close button clicked");
+                  this.setState({ showTotalDeaths: false });
+                }}
+              >
+                &#10006;
+              </button>
             </div>
           </div>
+          {/**********************  total recovered block *************************/}
           <div className="country__curCases--totalRecovered country__curCases--block">
-            <div className="country__curCases--totalRecovered-label country__curCases--block-label">
-              Total Recovered :
+            <div className="country__curCases--totalRecovered--container country__curCases--block--container">
+              <div className="country__curCases--totalRecovered-label country__curCases--block--container-label">
+                Total Recovered :
+              </div>
+              <div className="country__curCases--totalRecovered-data country__curCases--block--container-data">
+                {this.state.selectedCurCases.total_recovered}
+              </div>
             </div>
-            <div className="country__curCases--totalRecovered-data country__curCases--block-data">
-              {this.state.selectedCurCases.total_recovered}
+            <div className="country__curCases--block--icon">
+              <button
+                className="country__curCases--block--icon--button"
+                onClick={() => {
+                  console.log("Total Recovered close button clicked");
+                  this.setState({ showTotalRecovered: false });
+                }}
+              >
+                &#10006;
+              </button>
             </div>
           </div>
+          {/**********************  new deaths block *************************/}
           <div className="country__curCases--newDeaths country__curCases--block">
-            <div className="country__curCases--newDeaths-label country__curCases--block-label">
-              New Deaths :
+            <div className="country__curCases--newDeaths--container country__curCases--block--container">
+              <div className="country__curCases--newDeaths-label country__curCases--block--container-label">
+                New Deaths :
+              </div>
+              <div className="country__curCases--newDeaths-data country__curCases--block--container-data">
+                {this.state.selectedCurCases.new_deaths}
+              </div>
             </div>
-            <div className="country__curCases--newDeaths-data country__curCases--block-data">
-              {this.state.selectedCurCases.new_deaths}
+            <div className="country__curCases--block--icon">
+              <button
+                className="country__curCases--block--icon--button"
+                onClick={() => {
+                  console.log("New Deaths close button clicked");
+                  this.setState({ showNewDeaths: false });
+                }}
+              >
+                &#10006;
+              </button>
             </div>
           </div>
+          {/**********************  new cases block *************************/}
           <div className="country__curCases--newCases country__curCases--block">
-            <div className="country__curCases--newCases-label country__curCases--block-label">
-              New Cases :
+            <div className="country__curCases--newCases--container country__curCases--block--container">
+              <div className="country__curCases--newCases-label country__curCases--block--container-label">
+                New Cases :
+              </div>
+              <div className="country__curCases--newCases-data country__curCases--block--container-data">
+                {this.state.selectedCurCases.new_cases}
+              </div>
             </div>
-            <div className="country__curCases--newCases-data country__curCases--block-data">
-              {this.state.selectedCurCases.new_cases}
+            <div className="country__curCases--block--icon">
+              <button
+                className="country__curCases--block--icon--button"
+                onClick={() => {
+                  console.log("New Cases close button clicked");
+                  this.setState({ showNewCases: false });
+                }}
+              >
+                &#10006;
+              </button>
             </div>
           </div>
+          {/**********************  serious critical block *************************/}
           <div className="country__curCases--seriousCritical country__curCases--block">
-            <div className="country__curCases--seriousCritical-label country__curCases--block-label">
-              Serious Critical :
+            <div className="country__curCases--seriousCritical--container country__curCases--block--container">
+              <div className="country__curCases--seriousCritical-label country__curCases--block--container-label">
+                Serious Critical :
+              </div>
+              <div className="country__curCases--seriousCritical-data country__curCases--block--container-data">
+                {this.state.selectedCurCases.serious_critical}
+              </div>
             </div>
-            <div className="country__curCases--seriousCritical-data country__curCases--block-data">
-              {this.state.selectedCurCases.serious_critical}
+            <div className="country__curCases--block--icon">
+              <button
+                className="country__curCases--block--icon--button"
+                onClick={() => {
+                  console.log("Serious Critical close button clicked");
+                  this.setState({ showSeriousCritical: false });
+                }}
+              >
+                &#10006;
+              </button>
             </div>
           </div>
+          {/**********************  active cases block *************************/}
           <div className="country__curCases--activeCases country__curCases--block">
-            <div className="country__curCases--activeCases-label country__curCases--block-label">
-              Active Cases :
+            <div className="country__curCases--activeCases--container country__curCases--block--container">
+              <div className="country__curCases--activeCases-label country__curCases--block--container-label">
+                Active Cases :
+              </div>
+              <div className="country__curCases--activeCases-data country__curCases--block--container-data">
+                {this.state.selectedCurCases.active_cases}
+              </div>
             </div>
-            <div className="country__curCases--activeCases-data country__curCases--block-data">
-              {this.state.selectedCurCases.active_cases}
+            <div className="country__curCases--block--icon">
+              <button
+                className="country__curCases--block--icon--button"
+                onClick={() => {
+                  console.log("Active Cases close button clicked");
+                  this.setState({ showActiveCases: false });
+                }}
+              >
+                &#10006;
+              </button>
             </div>
           </div>
         </div>
