@@ -23,6 +23,7 @@
       font-size: 1.3rem;
       margin: 0 1%;
       border-radius: 8px;
+      box-shadow: 2px 2px 4px black;
       border: 1px black solid;
       background-color: #dbd5d5;
 
@@ -30,6 +31,7 @@
         width: 90%;
         display: flex;
         flex-direction: row;
+        align-items: center;
 
         &-label {
           width: 90%;
@@ -41,17 +43,44 @@
 
       &--icon {
         width: 10%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         text-align: center;
-        &--button {
+        border-radius: 8px;
+        &--close {
           width: 100%;
           height: 100%;
           font-size: 1.3rem;
           border-radius: 8px;
           background-color: #dbd5d5;
+          text-align: center;
+
           &:focus {
             outline: none;
+          }
+
+          &:hover {
+            background-color: #aca9a9;
+          }
+        }
+
+        &--plus {
+          display: none;
+          width: 100%;
+          height: 100%;
+          font-size: 1.6rem;
+          border-radius: 8px;
+          background-color: #dbd5d5;
+          text-align: center;
+          font-weight: 900;
+
+          &:focus {
+            outline: none;
+          }
+
+          &:hover {
+            background-color: #c3baba;
           }
         }
       }

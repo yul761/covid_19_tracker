@@ -27,9 +27,22 @@ export default class Country extends Component {
       showNewDeaths: true,
       showNewCases: true,
       showSeriousCritical: true,
-      showActiveCases: true
+      showActiveCases: true,
+      tagToggled: false
     };
   }
+
+  resetTags = () => {
+    this.setState({
+      showTotalCases: true,
+      showTotalDeaths: true,
+      showTotalRecovered: true,
+      showNewDeaths: true,
+      showNewCases: true,
+      showSeriousCritical: true,
+      showActiveCases: true
+    });
+  };
 
   color = {
     red: {
@@ -238,94 +251,41 @@ export default class Country extends Component {
         data: active_cases
       };
 
+      var insertedDataSet = [];
+
+      // filter through trigger to determine which data to show
+
+      this.state.showTotalCases
+        ? insertedDataSet.push(DataTotalCase)
+        : console.log("Don't show total cases");
+
+      this.state.showTotalDeaths
+        ? insertedDataSet.push(DataTotalDeaths)
+        : console.log("Don't show total deaths");
+
+      this.state.showTotalRecovered
+        ? insertedDataSet.push(DataTotalRecovered)
+        : console.log("Don't show total recovered");
+
+      this.state.showNewCases
+        ? insertedDataSet.push(DataNewCases)
+        : console.log("Don't show new cases");
+
+      this.state.showNewDeaths
+        ? insertedDataSet.push(DataNewDeaths)
+        : console.log("Don't show new deaths");
+
+      this.state.showSeriousCritical
+        ? insertedDataSet.push(DataSeriousCritical)
+        : console.log("Don't show serious critical");
+
+      this.state.showActiveCases
+        ? insertedDataSet.push(DataActiveCases)
+        : console.log("Don't show active cases");
+
       var data = {
         labels: labels,
-        datasets: [
-          {
-            label: "Total Cases",
-            fill: true,
-            //   backgroundColor: this.color.red.fill,
-            pointBackgroundColor: this.color.red.line,
-            borderColor: this.color.red.line,
-            pointHighlightStroke: this.color.red.line,
-            borderCapStyle: "butt",
-            pointRadius: 1,
-            pointHoverRadius: 1,
-            data: total_cases
-          },
-          {
-            label: "New Cases",
-            fill: true,
-            //   backgroundColor: this.color.blue.fill,
-            pointBackgroundColor: this.color.blue.line,
-            borderColor: this.color.blue.line,
-            pointHighlightStroke: this.color.blue.line,
-            borderCapStyle: "butt",
-            pointRadius: 1,
-            pointHoverRadius: 1,
-            data: new_cases
-          },
-          {
-            label: "Active Cases",
-            fill: true,
-            //   backgroundColor: this.color.green.fill,
-            pointBackgroundColor: this.color.green.line,
-            borderColor: this.color.green.line,
-            pointHighlightStroke: this.color.green.line,
-            borderCapStyle: "butt",
-            pointRadius: 1,
-            pointHoverRadius: 1,
-            data: active_cases
-          },
-          {
-            label: "Total Deaths",
-            fill: true,
-            //   backgroundColor: this.color.yellow.fill,
-            pointBackgroundColor: this.color.yellow.line,
-            borderColor: this.color.yellow.line,
-            pointHighlightStroke: this.color.yellow.line,
-            borderCapStyle: "butt",
-            pointRadius: 1,
-            pointHoverRadius: 1,
-            data: total_deaths
-          },
-          {
-            label: "New Deaths",
-            fill: true,
-            //   backgroundColor: this.color.purple.fill,
-            pointBackgroundColor: this.color.purple.line,
-            borderColor: this.color.purple.line,
-            pointHighlightStroke: this.color.purple.line,
-            borderCapStyle: "butt",
-            pointRadius: 1,
-            pointHoverRadius: 1,
-            data: new_deaths
-          },
-          {
-            label: "Total Recovered",
-            fill: true,
-            //   backgroundColor: this.color.black.fill,
-            pointBackgroundColor: this.color.black.line,
-            borderColor: this.color.black.line,
-            pointHighlightStroke: this.color.black.line,
-            borderCapStyle: "butt",
-            pointRadius: 1,
-            pointHoverRadius: 1,
-            data: total_recovered
-          },
-          {
-            label: "Serious Critical",
-            fill: true,
-            //   backgroundColor: this.color.pink.fill,
-            pointBackgroundColor: this.color.pink.line,
-            borderColor: this.color.pink.line,
-            pointHighlightStroke: this.color.pink.line,
-            borderCapStyle: "butt",
-            pointRadius: 1,
-            pointHoverRadius: 1,
-            data: serious_critical
-          }
-        ]
+        datasets: insertedDataSet
       };
       chartData = data;
     }
@@ -460,18 +420,22 @@ export default class Country extends Component {
       "The value of showActiveCases is : " + this.state.showActiveCases
     );
 
+    if (this.state.tagToggled) {
+      this.generateChart();
+      this.setState({ tagToggled: false });
+    }
+
     if (this.state.prevSelectedCountry !== this.state.selectedCountry) {
       chartData = {};
       this.HistoryCaseByCountry(this.state.selectedCountry);
       console.log(selectedFlag);
       if (selectedFlag) {
         this.curCasesByCountry(this.state.selectedCountry);
+        this.resetTags();
       }
+
       this.generateChart();
     }
-
-    console.log(this.state.selectedCurCases);
-    console.log(this.state.selectedCurCases.total_cases);
   }
   render() {
     return (
@@ -502,13 +466,43 @@ export default class Country extends Component {
             </div>
             <div className="country__curCases--block--icon">
               <button
-                className="country__curCases--block--icon--button"
+                className="country__curCases--block--icon--close"
+                id="totalcases__close"
                 onClick={() => {
                   console.log("Total Cases close button clicked");
-                  this.setState({ showTotalCases: false });
+                  // click on X button should hide itself and show +
+                  document.getElementById("totalcases__plus").style.display =
+                    "inline-block";
+                  document.getElementById("totalcases__close").style.display =
+                    "none";
+
+                  document.getElementsByClassName(
+                    "country__curCases--totalCases"
+                  )[0].style.opacity = "0.4";
+                  this.setState({ showTotalCases: false, tagToggled: true });
                 }}
               >
                 &#10006;
+              </button>
+              <button
+                className="country__curCases--block--icon--plus"
+                id="totalcases__plus"
+                onClick={() => {
+                  console.log("Total Cases Add button clicked");
+                  // click on + should hide itself and show X
+                  document.getElementById("totalcases__close").style.display =
+                    "inline-block";
+                  document.getElementById("totalcases__plus").style.display =
+                    "none";
+
+                  document.getElementsByClassName(
+                    "country__curCases--totalCases"
+                  )[0].style.opacity = "1";
+
+                  this.setState({ showTotalCases: true, tagToggled: true });
+                }}
+              >
+                &#43;
               </button>
             </div>
           </div>
@@ -524,13 +518,36 @@ export default class Country extends Component {
             </div>
             <div className="country__curCases--block--icon">
               <button
-                className="country__curCases--block--icon--button"
+                className="country__curCases--block--icon--close"
+                id="totaldeaths__close"
                 onClick={() => {
                   console.log("Total deaths close button clicked");
-                  this.setState({ showTotalDeaths: false });
+
+                  document.getElementById("totaldeaths__plus").style.display =
+                    "inline-block";
+                  document.getElementById("totaldeaths__close").style.display =
+                    "none";
+
+                  this.setState({ showTotalDeaths: false, tagToggled: true });
                 }}
               >
                 &#10006;
+              </button>
+
+              <button
+                className="country__curCases--block--icon--plus"
+                id="totaldeaths__plus"
+                onClick={() => {
+                  console.log("Total deaths Add button clicked");
+                  // click on + should hide itself and show X
+                  document.getElementById("totaldeaths__close").style.display =
+                    "inline-block";
+                  document.getElementById("totaldeaths__plus").style.display =
+                    "none";
+                  this.setState({ showTotalDeaths: true, tagToggled: true });
+                }}
+              >
+                &#43;
               </button>
             </div>
           </div>
@@ -546,13 +563,47 @@ export default class Country extends Component {
             </div>
             <div className="country__curCases--block--icon">
               <button
-                className="country__curCases--block--icon--button"
+                className="country__curCases--block--icon--close"
+                id="totalrecovered__close"
                 onClick={() => {
                   console.log("Total Recovered close button clicked");
-                  this.setState({ showTotalRecovered: false });
+
+                  document.getElementById(
+                    "totalrecovered__plus"
+                  ).style.display = "inline-block";
+                  document.getElementById(
+                    "totalrecovered__close"
+                  ).style.display = "none";
+
+                  this.setState({
+                    showTotalRecovered: false,
+                    tagToggled: true
+                  });
                 }}
               >
                 &#10006;
+              </button>
+
+              <button
+                className="country__curCases--block--icon--plus"
+                id="totalrecovered__plus"
+                onClick={() => {
+                  console.log("Total recovered Add button clicked");
+                  // click on + should hide itself and show X
+                  document.getElementById(
+                    "totalrecovered__close"
+                  ).style.display = "inline-block";
+                  document.getElementById(
+                    "totalrecovered__plus"
+                  ).style.display = "none";
+
+                  this.setState({
+                    showTotalRecovered: true,
+                    tagToggled: true
+                  });
+                }}
+              >
+                &#43;
               </button>
             </div>
           </div>
@@ -568,13 +619,36 @@ export default class Country extends Component {
             </div>
             <div className="country__curCases--block--icon">
               <button
-                className="country__curCases--block--icon--button"
+                className="country__curCases--block--icon--close"
+                id="newDeaths__close"
                 onClick={() => {
                   console.log("New Deaths close button clicked");
-                  this.setState({ showNewDeaths: false });
+
+                  document.getElementById("newDeaths__plus").style.display =
+                    "inline-block";
+                  document.getElementById("newDeaths__close").style.display =
+                    "none";
+
+                  this.setState({ showNewDeaths: false, tagToggled: true });
                 }}
               >
                 &#10006;
+              </button>
+
+              <button
+                className="country__curCases--block--icon--plus"
+                id="newDeaths__plus"
+                onClick={() => {
+                  console.log("New Deaths Add button clicked");
+                  // click on + should hide itself and show X
+                  document.getElementById("newDeaths__close").style.display =
+                    "inline-block";
+                  document.getElementById("newDeaths__plus").style.display =
+                    "none";
+                  this.setState({ showNewDeaths: true, tagToggled: true });
+                }}
+              >
+                &#43;
               </button>
             </div>
           </div>
@@ -590,13 +664,37 @@ export default class Country extends Component {
             </div>
             <div className="country__curCases--block--icon">
               <button
-                className="country__curCases--block--icon--button"
+                className="country__curCases--block--icon--close"
+                id="newCases__close"
                 onClick={() => {
                   console.log("New Cases close button clicked");
-                  this.setState({ showNewCases: false });
+
+                  document.getElementById("newCases__plus").style.display =
+                    "inline-block";
+                  document.getElementById("newCases__close").style.display =
+                    "none";
+
+                  this.setState({ showNewCases: false, tagToggled: true });
                 }}
               >
                 &#10006;
+              </button>
+
+              <button
+                className="country__curCases--block--icon--plus"
+                id="newCases__plus"
+                onClick={() => {
+                  console.log("New Cases Add button clicked");
+                  // click on + should hide itself and show X
+                  document.getElementById("newCases__close").style.display =
+                    "inline-block";
+                  document.getElementById("newCases__plus").style.display =
+                    "none";
+
+                  this.setState({ showNewCases: true, tagToggled: true });
+                }}
+              >
+                &#43;
               </button>
             </div>
           </div>
@@ -612,13 +710,47 @@ export default class Country extends Component {
             </div>
             <div className="country__curCases--block--icon">
               <button
-                className="country__curCases--block--icon--button"
+                className="country__curCases--block--icon--close"
+                id="seriousCritical__close"
                 onClick={() => {
                   console.log("Serious Critical close button clicked");
-                  this.setState({ showSeriousCritical: false });
+
+                  document.getElementById(
+                    "seriousCritical__plus"
+                  ).style.display = "inline-block";
+                  document.getElementById(
+                    "seriousCritical__close"
+                  ).style.display = "none";
+
+                  this.setState({
+                    showSeriousCritical: false,
+                    tagToggled: true
+                  });
                 }}
               >
                 &#10006;
+              </button>
+
+              <button
+                className="country__curCases--block--icon--plus"
+                id="seriousCritical__plus"
+                onClick={() => {
+                  console.log("Serious Critical Add button clicked");
+                  // click on + should hide itself and show X
+                  document.getElementById(
+                    "seriousCritical__close"
+                  ).style.display = "inline-block";
+                  document.getElementById(
+                    "seriousCritical__plus"
+                  ).style.display = "none";
+
+                  this.setState({
+                    showSeriousCritical: true,
+                    tagToggled: true
+                  });
+                }}
+              >
+                &#43;
               </button>
             </div>
           </div>
@@ -634,13 +766,36 @@ export default class Country extends Component {
             </div>
             <div className="country__curCases--block--icon">
               <button
-                className="country__curCases--block--icon--button"
+                className="country__curCases--block--icon--close"
+                id="activeCases__close"
                 onClick={() => {
                   console.log("Active Cases close button clicked");
-                  this.setState({ showActiveCases: false });
+                  document.getElementById("activeCases__plus").style.display =
+                    "inline-block";
+                  document.getElementById("activeCases__close").style.display =
+                    "none";
+
+                  this.setState({ showActiveCases: false, tagToggled: true });
                 }}
               >
                 &#10006;
+              </button>
+
+              <button
+                className="country__curCases--block--icon--plus"
+                id="activeCases__plus"
+                onClick={() => {
+                  console.log("Active Cases Add button clicked");
+                  // click on + should hide itself and show X
+                  document.getElementById("activeCases__close").style.display =
+                    "inline-block";
+                  document.getElementById("activeCases__plus").style.display =
+                    "none";
+
+                  this.setState({ showActiveCases: true, tagToggled: true });
+                }}
+              >
+                &#43;
               </button>
             </div>
           </div>
