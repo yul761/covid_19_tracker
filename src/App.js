@@ -14,7 +14,6 @@ function App() {
         <Route path="/covid_19_tracker/world" component={World} />
         <Route path="/covid_19_tracker/country" component={Country} />
       </Switch>
-      <Footer />
     </div>
   );
 }
