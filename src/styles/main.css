@@ -25,7 +25,6 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 100vw;
-  height: 80vh;
 }
 
 .stats__worldStatsTimeline {
@@ -37,34 +36,40 @@ body {
   border-radius: 4px;
   -webkit-box-shadow: 2px 2px 4px black;
           box-shadow: 2px 2px 4px black;
-  width: 98%;
-  margin: 1% 1%;
+  width: 96%;
+  margin: 1% 2%;
   margin-bottom: 0;
   height: 15vh;
   font-family: "Bellota";
   font-size: 2rem;
 }
 
+.stats__region {
+  font-family: "Abril Fatface";
+  font-size: 2rem;
+  margin: 1% 1%;
+}
+
 .stats__worldStats {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  width: 100%;
-  height: 70vh;
+  width: 96%;
 }
 
 .stats__worldStats__data {
   width: 100%;
   height: 20%;
-  margin: 1%;
+  margin: 1% 2%;
   background-color: #f8f8ff;
   border-radius: 4px;
   text-align: center;
@@ -74,12 +79,81 @@ body {
   font-size: 2rem;
 }
 
+.stats__specificStats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 96%;
+}
+
+.stats__specificStats__data {
+  width: 100%;
+  height: 20%;
+  margin: 1% 2%;
+  background-color: #f8f8ff;
+  border-radius: 4px;
+  text-align: center;
+  -webkit-box-shadow: 2px 2px 4px black;
+          box-shadow: 2px 2px 4px black;
+  font-family: "Bellota";
+  font-size: 2rem;
+}
+
+.stats__specificStats__newdeaths {
+  margin-bottom: 5%;
+}
+
+.stats__region {
+  width: 96%;
+  margin: 1% 2%;
+}
+
 @media only screen and (min-width: 768px) {
   .stats__worldStatsTimeline {
     height: 10vh;
   }
+  .stats__worldStats {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
   .stats__worldStats__data {
-    width: 48%;
+    width: 45%;
+    height: 30%;
+    font-size: 2rem;
+  }
+  .stats__specificStats {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .stats__specificStats__data {
+    width: 45%;
     height: 30%;
     font-size: 2rem;
   }
@@ -107,7 +181,7 @@ body {
 .header__label {
   width: 48%;
   height: 100%;
-  margin-left: 1%;
+  margin-left: 2%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -378,5 +452,44 @@ body {
 
 .country__curCases--activeCases {
   border: 3px #3f994c solid;
+}
+
+.footer {
+  width: 100vw;
+  height: 12vh;
+  border-top: 2px black solid;
+  border-bottom: 2px black solid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  font-family: "Bellota";
+  font-weight: 900;
+  font-size: 1rem;
+  background-color: #f8f8ff;
+}
+
+.footer__description {
+  width: 96%;
+  margin: 1% 2%;
+}
+
+.footer__helpfulLinks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 90%;
+  margin: 0 5% 1% 5%;
 }
 /*# sourceMappingURL=main.css.map */

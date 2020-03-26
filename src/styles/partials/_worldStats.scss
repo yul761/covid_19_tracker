@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 80vh;
+  // height: 80vh;
 
   &__worldStatsTimeline {
     background-color: #f8f8ff;
@@ -11,27 +11,33 @@
     border-radius: 4px;
     box-shadow: 2px 2px 4px black;
 
-    width: 98%;
-    margin: 1% 1%;
+    width: 96%;
+    margin: 1% 2%;
     margin-bottom: 0;
     height: 15vh;
     font-family: "Bellota";
     font-size: 2rem;
   }
 
+  &__region {
+    font-family: "Abril Fatface";
+    font-size: 2rem;
+    margin: 1% 1%;
+  }
+
   &__worldStats {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
     flex-wrap: wrap;
 
-    width: 100%;
-    height: 70vh;
+    width: 96%;
+    // height: 70vh;
 
     &__data {
       width: 100%;
       height: 20%;
-      margin: 1%;
+      margin: 1% 2%;
       background-color: #f8f8ff;
       border-radius: 4px;
       text-align: center;
@@ -39,6 +45,37 @@
       font-family: "Bellota";
       font-size: 2rem;
     }
+  }
+
+  &__specificStats {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    width: 96%;
+    // height: 70vh;
+
+    &__data {
+      width: 100%;
+      height: 20%;
+      margin: 1% 2%;
+      background-color: #f8f8ff;
+      border-radius: 4px;
+      text-align: center;
+      box-shadow: 2px 2px 4px black;
+      font-family: "Bellota";
+      font-size: 2rem;
+    }
+
+    &__newdeaths {
+      margin-bottom: 5%;
+    }
+  }
+
+  &__region {
+    width: 96%;
+    margin: 1% 2%;
   }
 }
 
@@ -48,8 +85,26 @@
       height: 10vh;
     }
     &__worldStats {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      // width: 100%;
       &__data {
-        width: 48%;
+        width: 45%;
+        height: 30%;
+        font-size: 2rem;
+      }
+    }
+
+    &__specificStats {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      // width: 100%;
+      &__data {
+        width: 45%;
         height: 30%;
         font-size: 2rem;
       }

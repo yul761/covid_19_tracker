@@ -1,0 +1,28 @@
+.footer {
+  width: 100vw;
+  height: 12vh;
+  border-top: 2px black solid;
+  border-bottom: 2px black solid;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  font-family: "Bellota";
+  font-weight: 900;
+  font-size: 1rem;
+
+  background-color: #f8f8ff;
+  &__description {
+    width: 96%;
+    margin: 1% 2%;
+  }
+
+  &__helpfulLinks {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 90%;
+    margin: 0 5% 1% 5%;
+  }
+}
