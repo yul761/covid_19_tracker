@@ -8,10 +8,10 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Redirect from="/" to="/world" />
+      <Redirect from="/" to="/covid_19_tracker/world" />
       <Switch>
-        <Route path="/world" component={World} />
-        <Route path="/country" component={Country} />
+        <Route path="/covid_19_tracker/world" component={World} />
+        <Route path="/covid_19_tracker/country" component={Country} />
       </Switch>
     </div>
   );

@@ -17,7 +17,7 @@ export default class header extends Component {
         </div>
         <ul className="header__tabs">
           <Link
-            to="/world"
+            to="/covid_19_tracker/world"
             className="header__tabs--worldStats"
             onClick={() => {
               console.log("World tag is clicked");
@@ -35,7 +35,7 @@ export default class header extends Component {
             </li>
           </Link>
           <Link
-            to="/country"
+            to="/covid_19_tracker/country"
             className="header__tabs--country"
             onClick={() => {
               console.log("Country/Region is clicked");
