@@ -528,6 +528,10 @@ export default class Country extends Component {
                   document.getElementById("totaldeaths__close").style.display =
                     "none";
 
+                  document.getElementsByClassName(
+                    "country__curCases--totalDeaths"
+                  )[0].style.opacity = "0.4";
+
                   this.setState({ showTotalDeaths: false, tagToggled: true });
                 }}
               >
@@ -544,6 +548,11 @@ export default class Country extends Component {
                     "inline-block";
                   document.getElementById("totaldeaths__plus").style.display =
                     "none";
+
+                  document.getElementsByClassName(
+                    "country__curCases--totalDeaths"
+                  )[0].style.opacity = "1";
+
                   this.setState({ showTotalDeaths: true, tagToggled: true });
                 }}
               >
@@ -575,6 +584,10 @@ export default class Country extends Component {
                     "totalrecovered__close"
                   ).style.display = "none";
 
+                  document.getElementsByClassName(
+                    "country__curCases--totalRecovered"
+                  )[0].style.opacity = "0.4";
+
                   this.setState({
                     showTotalRecovered: false,
                     tagToggled: true
@@ -596,6 +609,10 @@ export default class Country extends Component {
                   document.getElementById(
                     "totalrecovered__plus"
                   ).style.display = "none";
+
+                  document.getElementsByClassName(
+                    "country__curCases--totalRecovered"
+                  )[0].style.opacity = "1";
 
                   this.setState({
                     showTotalRecovered: true,
@@ -629,6 +646,10 @@ export default class Country extends Component {
                   document.getElementById("newDeaths__close").style.display =
                     "none";
 
+                  document.getElementsByClassName(
+                    "country__curCases--newDeaths"
+                  )[0].style.opacity = "0.4";
+
                   this.setState({ showNewDeaths: false, tagToggled: true });
                 }}
               >
@@ -645,6 +666,11 @@ export default class Country extends Component {
                     "inline-block";
                   document.getElementById("newDeaths__plus").style.display =
                     "none";
+
+                  document.getElementsByClassName(
+                    "country__curCases--newDeaths"
+                  )[0].style.opacity = "1";
+
                   this.setState({ showNewDeaths: true, tagToggled: true });
                 }}
               >
@@ -674,6 +700,10 @@ export default class Country extends Component {
                   document.getElementById("newCases__close").style.display =
                     "none";
 
+                  document.getElementsByClassName(
+                    "country__curCases--newCases"
+                  )[0].style.opacity = "0.4";
+
                   this.setState({ showNewCases: false, tagToggled: true });
                 }}
               >
@@ -690,6 +720,10 @@ export default class Country extends Component {
                     "inline-block";
                   document.getElementById("newCases__plus").style.display =
                     "none";
+
+                  document.getElementsByClassName(
+                    "country__curCases--newCases"
+                  )[0].style.opacity = "1";
 
                   this.setState({ showNewCases: true, tagToggled: true });
                 }}
@@ -722,6 +756,10 @@ export default class Country extends Component {
                     "seriousCritical__close"
                   ).style.display = "none";
 
+                  document.getElementsByClassName(
+                    "country__curCases--seriousCritical"
+                  )[0].style.opacity = "0.4";
+
                   this.setState({
                     showSeriousCritical: false,
                     tagToggled: true
@@ -743,6 +781,10 @@ export default class Country extends Component {
                   document.getElementById(
                     "seriousCritical__plus"
                   ).style.display = "none";
+
+                  document.getElementsByClassName(
+                    "country__curCases--seriousCritical"
+                  )[0].style.opacity = "1";
 
                   this.setState({
                     showSeriousCritical: true,
@@ -775,6 +817,10 @@ export default class Country extends Component {
                   document.getElementById("activeCases__close").style.display =
                     "none";
 
+                  document.getElementsByClassName(
+                    "country__curCases--activeCases"
+                  )[0].style.opacity = "0.4";
+
                   this.setState({ showActiveCases: false, tagToggled: true });
                 }}
               >
@@ -791,6 +837,10 @@ export default class Country extends Component {
                     "inline-block";
                   document.getElementById("activeCases__plus").style.display =
                     "none";
+
+                  document.getElementsByClassName(
+                    "country__curCases--activeCases"
+                  )[0].style.opacity = "1";
 
                   this.setState({ showActiveCases: true, tagToggled: true });
                 }}

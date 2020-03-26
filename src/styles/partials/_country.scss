@@ -48,6 +48,8 @@
         flex-direction: column;
         text-align: center;
         border-radius: 8px;
+        background-color: #dbd5d5;
+        margin-left: 1%;
         &--close {
           width: 100%;
           height: 100%;
@@ -84,6 +86,40 @@
           }
         }
       }
+    }
+
+    &--totalCases {
+      //red
+      border: 3px #c72b26 solid;
+    }
+
+    &--totalDeaths {
+      //yellow
+      border: 3px #aba441 solid;
+    }
+
+    &--totalRecovered {
+      //black
+      border: 3px black solid;
+    }
+
+    &--newDeaths {
+      //purple
+      border: 3px #6f34a3 solid;
+    }
+
+    &--newCases {
+      //blue
+      border: 3px #2c5fb8 solid;
+    }
+
+    &--seriousCritical {
+      //pink
+      border: 3px #a11a9c solid;
+    }
+    &--activeCases {
+      //green
+      border: 3px #3f994c solid;
     }
   }
 }

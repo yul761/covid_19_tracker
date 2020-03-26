@@ -9,6 +9,7 @@
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
     "chartjs-plugin-zoom": "^0.7.5",
+    "jquery": "^3.4.1",
     "nan": "^2.14.0",
     "react": "^16.13.0",
     "react-chartjs-2": "^2.9.0",

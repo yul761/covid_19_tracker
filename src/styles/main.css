@@ -1,9 +1,16 @@
+@import url("https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Bellota&display=swap");
 * {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+}
+
+body {
+  background-image: url("../assets/background.jpg");
+  background-repeat: no-repeat;
+  background-size: auto;
 }
 
 /* media query for mobile */
@@ -22,7 +29,7 @@
 }
 
 .stats__worldStatsTimeline {
-  background-color: #a19ea1;
+  background-color: #f8f8ff;
   text-align: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -58,7 +65,7 @@
   width: 100%;
   height: 20%;
   margin: 1%;
-  background-color: #a19ea1;
+  background-color: #f8f8ff;
   border-radius: 4px;
   text-align: center;
   -webkit-box-shadow: 2px 2px 4px black;
@@ -81,6 +88,40 @@
 .header {
   width: 100vw;
   height: 8vh;
+  margin-top: 1%;
+  border-top: 2px black solid;
+  border-bottom: 2px black solid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #f8f8ff;
+}
+
+.header__label {
+  width: 48%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.header__label--text {
+  font-family: "Abril Fatface";
+  font-size: 1.8rem;
 }
 
 .header__tabs {
@@ -96,12 +137,10 @@
   font-size: 2.5rem;
   color: white;
   height: 100%;
-  width: 98%;
-  margin: 1%;
-  background-color: #353030;
-  border-radius: 4px;
-  -webkit-box-shadow: 2px 2px 4px black;
-          box-shadow: 2px 2px 4px black;
+  width: 40%;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 .header__tabs--worldStats {
@@ -109,6 +148,33 @@
   text-align: center;
   text-decoration: none;
   color: white;
+  margin: 1%;
+}
+
+.header__tabs--worldStats--tabs {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.header__tabs--worldStats--tabs--icon {
+  width: 54px;
+  height: 54px;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+  border: 2px black solid;
+  border-radius: 16px;
 }
 
 .header__tabs--country {
@@ -116,6 +182,55 @@
   text-align: center;
   text-decoration: none;
   color: white;
+  margin: 1%;
+}
+
+.header__tabs--country--tabs {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.header__tabs--country--tabs--icon {
+  width: 48px;
+  height: 48px;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+  border: 2px black solid;
+  border-radius: 8px;
+}
+
+@media only screen and (min-width: 768px) {
+  .header__label {
+    width: 40%;
+  }
+  .header__label--text {
+    font-size: 2.5rem;
+  }
+  .header__tabs {
+    width: 30%;
+  }
+}
+
+.rotate {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.resetRotate {
+  -webkit-transform: none;
+          transform: none;
 }
 
 .country {
@@ -196,6 +311,8 @@
           flex-direction: column;
   text-align: center;
   border-radius: 8px;
+  background-color: #dbd5d5;
+  margin-left: 1%;
 }
 
 .country__curCases--block--icon--close {
@@ -232,5 +349,33 @@
 
 .country__curCases--block--icon--plus:hover {
   background-color: #c3baba;
+}
+
+.country__curCases--totalCases {
+  border: 3px #c72b26 solid;
+}
+
+.country__curCases--totalDeaths {
+  border: 3px #aba441 solid;
+}
+
+.country__curCases--totalRecovered {
+  border: 3px black solid;
+}
+
+.country__curCases--newDeaths {
+  border: 3px #6f34a3 solid;
+}
+
+.country__curCases--newCases {
+  border: 3px #2c5fb8 solid;
+}
+
+.country__curCases--seriousCritical {
+  border: 3px #a11a9c solid;
+}
+
+.country__curCases--activeCases {
+  border: 3px #3f994c solid;
 }
 /*# sourceMappingURL=main.css.map */

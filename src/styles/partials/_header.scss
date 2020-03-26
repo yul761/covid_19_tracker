@@ -1,6 +1,27 @@
 .header {
   width: 100vw;
   height: 8vh;
+  margin-top: 1%;
+  border-top: 2px black solid;
+  border-bottom: 2px black solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  // background-color: rgb(228, 224, 224);
+  background-color: #f8f8ff;
+
+  &__label {
+    width: 48%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &--text {
+      font-family: "Abril Fatface";
+      font-size: 1.8rem;
+    }
+  }
 
   &__tabs {
     display: flex;
@@ -10,17 +31,40 @@
     font-size: 2.5rem;
     color: white;
     height: 100%;
-    width: 98%;
-    margin: 1%;
-    background-color: rgb(53, 48, 48);
-    border-radius: 4px;
-    box-shadow: 2px 2px 4px black;
+    width: 40%;
+    justify-content: flex-end;
+    // margin: 1%;
+    // background-color: rgb(53, 48, 48);
+    // border-radius: 4px;
+    // box-shadow: 2px 2px 4px black;
 
     &--worldStats {
       width: 50%;
       text-align: center;
       text-decoration: none;
       color: white;
+      margin: 1%;
+      // background-color: #54575c;
+
+      // &:active {
+      //   background-color: black;
+      //   opacity: 0.5;
+      // }
+
+      &--tabs {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        &--icon {
+          width: 54px;
+          height: 54px;
+          transition: transform 0.5s;
+          border: 2px black solid;
+          border-radius: 16px;
+        }
+      }
     }
 
     &--country {
@@ -28,6 +72,55 @@
       text-align: center;
       text-decoration: none;
       color: white;
+      margin: 1%;
+
+      &--tabs {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        &--icon {
+          width: 48px;
+          height: 48px;
+          transition: transform 0.5s;
+          border: 2px black solid;
+          border-radius: 8px;
+        }
+      }
+
+      // &:active {
+      //   background-color: black;
+      //   opacity: 0.5;
+      // }
     }
   }
+}
+
+@include tablet {
+  .header {
+    &__label {
+      width: 40%;
+      &--text {
+        font-size: 2.5rem;
+      }
+    }
+
+    &__tabs {
+      width: 30%;
+    }
+  }
+}
+
+.rotate {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.resetRotate {
+  transform: none;
 }
