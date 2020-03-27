@@ -3,7 +3,6 @@ import World from "./components/World";
 import Header from "./components/header";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Country from "./components/Country";
-import Footer from "./components/footer";
 
 function App() {
   return (
