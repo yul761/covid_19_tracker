@@ -16,7 +16,7 @@ export default class footer extends Component {
           </ol>
 
           <ol className="footer__helpfulLinks--content">
-            CBC News:
+            CBC News
             <a href="https://www.cbc.ca/news/coronavirus-guide-explainer-1.5497009">
               https://www.cbc.ca/news/coronavirus-guide-explainer-1.5497009
             </a>
